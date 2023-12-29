@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copy only the necessary files, excluding the 'node_modules' directory
-COPY . --exclude node_modules /nodejs_app/
+COPY . .
 
 # Make port 3050 available to the world outside this container
 EXPOSE 3990
