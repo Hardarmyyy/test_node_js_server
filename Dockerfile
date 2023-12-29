@@ -13,12 +13,11 @@ RUN npm install
 # Copy only the necessary files, excluding the 'node_modules' directory
 COPY . .
 
-# Make port 3050 available to the world outside this container
-EXPOSE 3990
-
 # Define environment variable
-ENV NODE_ENV=production
-ENV PORT=3990
+COPY .env.production .env
+
+# Make port 3990 available to the world outside this container
+EXPOSE 3990
 
 # Run the command
 CMD ["npm", "start"]
