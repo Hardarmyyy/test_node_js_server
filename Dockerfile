@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Define environment variable
-COPY  .env .env.production
+COPY .env.production .env
 
 # Make port 3990 available to the world outside this container
 EXPOSE 3990
