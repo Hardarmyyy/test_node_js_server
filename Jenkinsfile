@@ -1,6 +1,11 @@
 pipeline {
   agent any
 
+  environment {
+      NODE_ENV = "production"
+      PORT = "3990"
+  }
+
   stages {
     stage('Build') { 
       steps {
