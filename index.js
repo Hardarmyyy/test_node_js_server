@@ -5,7 +5,7 @@ require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 
 app.get("/",(req,res)=>{
-    res.send("Hello world, let's go cloud test with Jenkins CI/CD to build a docker image, pull and run on my local computer");
+    res.send("Hello world, let's go cloud testing with Jenkins CI/CD to build a docker image, pull and run on my local computer");
 })
 
 app.listen(process.env.PORT || PORT,()=>console.log(`Server is listening on ${process.env.PORT}`))
