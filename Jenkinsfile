@@ -8,12 +8,12 @@ pipeline {
       steps {
         // Build Docker image with build-time arguments
         script {
-            def dockerBuildArgs = [
-                "--build-arg PORT=${PORT}"
-            ]
-            sh "npm install"
-            sh "docker build -t test-nodejs-server ${dockerBuildArgs} ."
-            sh "docker tag test-nodejs-server $DOCKER_NODEJS_IMAGE"
+          def dockerBuildArgs = [
+              "--build-arg PORT=${PORT}"
+          ]
+          sh "npm install"
+          sh "docker build -t test-nodejs-server ${dockerBuildArgs} ."
+          sh "docker tag test-nodejs-server ${DOCKER_NODEJS_IMAGE}"
         }
       }
     }
@@ -32,11 +32,30 @@ pipeline {
         }
       }
     }
+
+    stage('Archive Artifacts') {
+      steps {
+        archiveArtifacts artifacts: 'build/**', allowEmptyArchive: true
+      }
+    }
+
   } 
   
   post {
+
     always {
       sh 'docker logout'
+      
     }
+
+    success {
+      echo 'Build successful! Artifacts archived.'
+    }
+
+    failure {
+      echo 'Build failed. Check the logs for details.'
+    }
+
   }
+  
 } 

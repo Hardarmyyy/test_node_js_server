@@ -16,10 +16,10 @@ COPY . .
 # Define build-time arguments for env variables
 ARG PORT
 
-# Set environment variables during build
+# Set environment variables during build in order to allow data persistence in the container
 ENV PORT=${PORT}
 
-# Make port 3990 available to the world outside this container
+# Make port available to the world outside this container
 EXPOSE ${PORT}
 
 # Run the command
