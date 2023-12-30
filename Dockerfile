@@ -10,11 +10,17 @@ COPY package*.json ./
 # Install app dependencies
 RUN npm install
 
-# Copy only the necessary files, excluding the 'node_modules' directory
+# Copy only the necessary files
 COPY . .
+
+# Define build-time arguments for env variables
+ARG PORT
+
+# Set environment variables during build
+ENV PORT=${PORT}
 
 # Make port 3990 available to the world outside this container
 EXPOSE ${PORT}
 
 # Run the command
-CMD ["npm", "start"]
+CMD ["npm", "start"] 

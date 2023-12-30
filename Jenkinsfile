@@ -1,16 +1,16 @@
 pipeline {
+  
   agent any
-
-  environment {
-      NODE_ENV = "production"
-      PORT = "3990"
-  }
 
   stages {
     stage('Build') { 
       steps {
+        // Build Docker image with build-time arguments
+        def dockerBuildArgs = [
+            "--build-arg PORT=${PORT}"
+        ]
         sh 'npm install'
-        sh 'docker build -t test-nodejs-server .'
+        sh 'docker build -t test-nodejs-server ${dockerBuildArgs} .'
         sh 'docker tag test-nodejs-server $DOCKER_NODEJS_IMAGE'
       }
     }
@@ -27,7 +27,7 @@ pipeline {
         }
       }
     }
-  }
+  } 
   post {
     always {
       sh 'docker logout'
