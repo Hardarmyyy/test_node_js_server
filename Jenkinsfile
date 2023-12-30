@@ -8,9 +8,8 @@ pipeline {
       steps {
         // Build Docker image with build-time arguments
         script {
-          def dockerBuildArgs = [
-              "--build-arg PORT=${PORT}"
-          ]
+          def dockerBuildArgs = "--build-arg PORT=${PORT}"
+          
           sh "npm install"
           sh "docker build -t test-nodejs-server ${dockerBuildArgs} ."
           sh "docker tag test-nodejs-server ${DOCKER_NODEJS_IMAGE}"
