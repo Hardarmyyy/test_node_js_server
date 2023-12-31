@@ -23,4 +23,4 @@ ENV PORT=${PORT}
 EXPOSE ${PORT}
 
 # Run the command
-CMD ["npm", "start"] 
+CMD ["node", "index.js"] 
